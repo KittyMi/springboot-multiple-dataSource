@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andy.mybatis.mapper.master.SysUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.andy.mybatis.entity.SysUser">
+    <result column="id" property="id" />
+    <result column="gmt_create" property="gmtCreate" />
+        <result column="account" property="account" />
+        <result column="password" property="password" />
+        <result column="nick_name" property="nickName" />
+        <result column="duty" property="duty" />
+        <result column="dept_id" property="deptId" />
+        <result column="status" property="status" />
+        <result column="sex" property="sex" />
+        <result column="age" property="age" />
+        <result column="tel" property="tel" />
+        <result column="email" property="email" />
+        <result column="gmt_update" property="gmtUpdate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        gmt_create,
+        account, password, nick_name, duty, dept_id, status, sex, age, tel, email, gmt_update
+    </sql>
+
+</mapper>

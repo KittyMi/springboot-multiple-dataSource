@@ -1,0 +1,66 @@
+#数据库配置
+mysql:
+  host: 127.0.0.1
+  port: 3306
+  username: root
+  password: root
+
+#redis配置
+redis:
+  host: 127.0.0.1
+  port: 6379
+  database: 0
+server:
+  port: 8081
+
+spring:
+  redis:
+    database: ${redis.database}
+    host: ${redis.host}
+    port: ${redis.port}
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+  datasource:
+    druid:
+      master:
+        username: ${mysql.username}
+        password: ${mysql.password}
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://${mysql.host}:${mysql.port}/master_db?useUnicode=true&characterEncoding=utf-8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=true&verifyServerCertificate=false&serverTimezone=GMT%2B8
+        initialSize: 5
+        minIdle: 5
+        maxActive: 20
+      slave:
+        username: ${mysql.username}
+        password: ${mysql.password}
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://${mysql.host}:${mysql.port}/slave_db?useUnicode=true&characterEncoding=utf-8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=true&verifyServerCertificate=false&serverTimezone=GMT%2B8
+        initialSize: 5
+        minIdle: 5
+        maxActive: 20
+      stat-view-servlet:
+        enabled: true
+        reset-enable: true
+        url-pattern: /druid/*
+        allow:
+        deny:
+      web-stat-filter:
+        enabled: true
+        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+        profile-enable: true
+        session-stat-enable: false
+mybatis-plus:
+  # classpath要加上后面的*，表示通配符，匹配任意路径
+  mapper-locations: classpath*:/mapper/*Mapper.xml
+  typeAliasesPackage: com.andy.mybatis.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true # 开启xml缓存
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+
