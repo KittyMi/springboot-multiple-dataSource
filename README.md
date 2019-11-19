@@ -8,8 +8,11 @@
  spring-boot.version：2.1.5.RELEASE
  <!--        mybatis-->
  mybatis.version：2.0.1
+ 
  druid.version：1.1.16
+ 
  mybatis-plus.version：3.1.1
+ 
  
  
  
